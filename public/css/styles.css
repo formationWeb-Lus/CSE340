@@ -1,892 +1,381 @@
+/* ==============================
+   RESET & GLOBAL (MOBILE FIRST)
+   ============================== */
 
-body {
-  font-family: Arial, sans-serif;
-  color: #333;
-  margin: 0;
-  padding: 0;
-  background-color: #f9f9f9;
+   
+
+
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-header, nav, footer {
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background-color: #f9fafb; /* Mobile : fond neutre */
+  color: #1f2933;
+  line-height: 1.6;
+}
+
+/* ==============================
+   MAIN WRAPPER (CONTENU)
+   ============================== */
+
+#wrapper {
+  background-color: #ffffff;
+  max-width: 100%;
+}
+
+/* ==============================
+   HEADER
+   ============================== */
+
+header {
+  background-color: #0f172a;
+  color: #ffffff;
+  padding: 1rem;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+/* ==============================
+   HERO SECTION
+   ============================== */
+
+.hero {
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.hero h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  color: #334155;
+}
+
+/* ==============================
+   FEATURES
+   ============================== */
+
+.features {
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.features article {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.features h3 {
+  margin-top: 0;
+  color: #0f172a;
+}
+
+/* ==============================
+   FOOTER
+   ============================== */
+
+footer {
+  background-color: #0f172a;
+  color: #ffffff;
   text-align: center;
   padding: 1rem;
-  background-color: #00060c;
-  color: white;
+  font-size: 0.9rem;
+}
+
+/* ==============================
+   DESKTOP ONLY (LARGE SCREENS)
+   ============================== */
+
+@media (min-width: 1024px) {
+  body {
+    background-image: url("/images/site/small_check.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+
+  #wrapper {
+    max-width: 1200px;
+    margin: 3rem auto;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+  }
+
+  .features {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .features article {
+    width: 30%;
+  }
+}
+
+
+/* HERO IMAGE */
+.hero {
+  position: relative;
+  background-image: url("/images/vehicles/crwn-vic.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 450px; /* ajustable */
+}
+
+/* CARTE FLOTTANTE EN BAS DROITE */
+.hero-card {
+  position: absolute;
+  bottom: 28px;      /* distance du bas */
+  right: 10px;       /* distance de la droite */
+  background-color: rgba(255, 255, 255, 0.445); /* semi-transparent */
+  padding: 1.8rem;
+  border-radius: 10px;
+  max-width: 280px;
+  text-align: left;
+  box-shadow: 0 8px 10px rgba(0,0,0,0.3);
+}
+
+.hero-card h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: #2a0f14;
+}
+
+.hero-card p {
+  font-size: 1rem;
+  color: #bd0624;
+}
+
+/* RESPONSIVE MOBILE */
+@media (max-width: 768px) {
+  .hero {
+    height: 300px;
+  }
+
+  .hero-card {
+    bottom: 10px;
+    right: 10px;
+    max-width: 400px;
+    padding: 1rem;
+  }
+
+  .hero-card h1 {
+    font-size: 1rem;
+  }
+
+  .hero-card p {
+    font-size: 0.9rem;
+  }
+}
+
+
+/* ==============================
+   HEADER (CSE Motors + My Account)
+   ============================== */
+
+#top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #0f172a;
+}
+
+.siteName a {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#tools a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* ==============================
+   NAVIGATION (MENU EN LIGNE)
+   ============================== */
+
+nav {
+  background-color: #1e293b;
 }
 
 nav ul {
   list-style: none;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  margin: 0;
+  padding: 0.75rem 1rem;
+  display: flex;              /* 🔑 menu en ligne */
+  gap: 1.5rem;
 }
 
-main {
-  padding: 1rem;
+nav li {
+  color: #ffffff;
+  font-weight: 500;
+  cursor: pointer;
 }
 
-.hero img {
-  width: 100%;
-  height: auto;
+nav li:hover {
+  text-decoration: underline;
 }
+
+/* ==============================
+   WRAPPER
+   ============================== */
+
+#wrapper {
+  background-color: #ffffff;
+}
+
+/* ==============================
+   HERO (JUSTE SOUS LA NAV)
+   ============================== */
+
+.hero {
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  color: #334155;
+}
+
+/* ==============================
+   FEATURES
+   ============================== */
 
 .features {
-  margin-top: 2rem;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .features article {
-  margin-bottom: 1rem;
-}
-
-#top-header {
-  background-color: #1e1e2f;
-  color: #ffffff;
-  display: flex;
-  flex-direction: column; /* Mobile: empiler les éléments */
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-
-.siteName a {
-  color: #ffffff;
-  font-size: 1.8rem;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-
-#tools a {
-  display: inline-block;
-  background-color: transparent;
-  color: #ffffff;
-  font-size: 1rem;
-  text-decoration: none;
-  padding: 0.6rem 1.2rem;
-  border: 2px solid #ffffff;
-  border-radius: 5px;
-  transition: background-color 0.3s, color 0.3s;
-  text-align: center;
-}
-
-#tools a:hover {
   background-color: #ffffff;
-  color:  #ffffff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
 }
 
+/* ==============================
+   DESKTOP (GRANDS ÉCRANS)
+   ============================== */
 
-@media (min-width: 768px) {
-  #top-header {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
+@media (min-width: 1024px) {
+  body {
+    background-image: url("/images/site/small_check.jpg");
+    background-size: cover;
+    background-position: center;
   }
 
-  nav ul {
-    flex-direction: row;
-    justify-content: center;
+  #wrapper {
+    max-width: 1200px;
+    margin: 2rem auto;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
   }
 
   .features {
-    display: flex;
-    gap: 2rem;
+    flex-direction: row;
+    justify-content: space-between;
   }
 
   .features article {
-    flex: 1;
+    width: 30%;
   }
 }
 
-/* Conteneur de grille */
-.vehicle-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2em;
-  padding: 2em;
-}
 
-/* Style des cartes individuelles */
-.vehicle-summary {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease;
-  overflow: hidden;
+
+/* ==============================
+   UPGRADES SECTION
+   ============================== */
+.upgrades {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* mobile first */
+  gap: 1.5rem;
+  padding: 2rem 1rem;
 }
 
-.vehicle-summary:hover {
-  transform: scale(1.01);
-}
-
-.vehicle-image {
-  width: 100%;
-  background-color: #f9f9f9;
-  text-align: center;
-  padding: 1em;
-}
-
-.vehicle-image img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-}
-
-.vehicle-info {
-  padding: 1em;
-}
-
-.vehicle-info h2 {
-  font-size: 1.3em;
-  margin: 0.5em 0;
-  color: #005288;
-}
-
-.vehicle-info h2 a {
-  text-decoration: none;
-  color: #005288;
-  transition: color 0.3s ease;
-}
-
-.vehicle-info h2 a:hover {
-  color: #007ab8;
-  text-decoration: underline;
-}
-
-.vehicle-info p {
-  margin: 0.3em 0;
-  font-size: 1em;
-  line-height: 1.5;
-}
-
-.vehicle-info .description {
-  margin-top: 1em;
-  background-color: #f9f9f9;
-  padding: 1em;
-  border-radius: 8px;
-  border-left: 4px solid #005288;
-}
-
-
-.vehicle-info .description {
-  margin-top: 1em;
-  background-color: #f9f9f9;
-  padding: 1em;
-  border-radius: 8px;
-  border-left: 4px solid #005288;
-  display: none;
-  transition: all 0.3s ease;
-}
-
-
-/* Barre de navigation */
-.nav-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #000;
-  padding: 0.5em 1em;
-  flex-wrap: wrap;
-}
-
-.nav-logo img {
-  height: 50px;
-  width: auto;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 2em;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-links li a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1.1em;
-  transition: color 0.3s ease;
-}
-
-.nav-links li a:hover {
-  color: #ffcc00;
-}
-
-
-/* NAVIGATION */
-.main-nav {
-  background-color: #333;
-  padding: 1rem 2rem;
-}
-
-.nav-container {
-  display: flex;
-  justify-content: center; /* centre les liens */
-  align-items: center;
-  position: relative;
-}
-
-.nav-logo {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.nav-logo img {
-  height: 60px;
-  width: auto;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 2rem;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-links li a {
-  color: white;
-  text-decoration: none;
-  font-size: 1.1em;
-  font-weight: bold;
-  transition: color 0.3s;
-}
-
-.nav-links li a:hover {
-  color: #ffd700;
-}
-
-
-
-.form-container {
-  max-width: 400px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background-color: #010c1a;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-.login-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.login-form label {
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
-  font-weight: bold;
-}
-
-.login-form input {
-  padding: 0.5rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.login-form button {
-  margin-top: 1.5rem;
-  padding: 0.75rem;
-  font-size: 1rem;
-  background-color: #0057d8;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.flash-message {
-  background-color: #ffe0e0;
-  color: #a00;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border-radius: 4px;
-  text-align: center;
-}
-
-.register-link {
-  margin-top: 1rem;
-  text-align: center;
-}
-
-
-
-
-/* Texte blanc pour le titre et les labels */
-.login-title,
-.form-label {
-  color: white;
-}
-
-/* Facultatif : fond sombre pour voir le texte blanc */
-.form-container {
-  background-color: #222;
-  padding: 2rem;
-  border-radius: 10px;
-  max-width: 400px;
-  margin: auto;
-  margin-top: 3rem;
-}
-
-/* Style optionnel pour les inputs et bouton */
-.login-form input {
-  width: 100%;
-  padding: 0.5rem;
-  margin-top: 0.25rem;
-  margin-bottom: 1rem;
-  border-radius: 5px;
-  border: none;
-}
-
-.login-form button {
-  background-color: #00aaff;
-  color: white;
-  padding: 0.75rem;
-  border: none;
-  width: 100%;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.login-form button:hover {
-  background-color: #fa2b93;
-}
-
-
-.register-text {
-  color: rgb(66, 92, 243); /* texte en vert */
-  font-weight: bold; /* optionnel, pour le mettre en gras */
-}
-
-
-
-
-/* Formulaire blanc */
-.form-container {
-  background-color: #222; /* fond sombre */
-  padding: 2rem;
-  border-radius: 8px;
-  max-width: 500px;
-  margin: auto;
-  color: white; /* texte blanc */
-}
-
-.form-title {
-  color: white;
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-.register-form label {
-  display: block;
-  margin-top: 1rem;
-  color: white;
-}
-
-.register-form input {
-  width: 100%;
-  padding: 0.5rem;
-  margin-top: 0.25rem;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-}
-
-.register-form button {
-  margin-top: 1.5rem;
-  padding: 0.75rem;
-  width: 100%;
-  background-color: #005eff;
-  color: white;
-  font-weight: bold;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.register-form button:hover {
-  background-color: #0041c4;
-}
-
-/* Texte vert */
-.login-link {
-  margin-top: 1rem;
-  text-align: center;
-  color: green;
-}
-
-.login-link a {
-  color: lightgreen;
-  text-decoration: underline;
-}
-
-
-
-.password-hint {
-  display: block;
-  margin-top: 0.80rem;
-  font-size: 1rem;
-  color: #f70556;
-}
-
-
-/* Base Reset */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f4f6f9;
-  color: #333;
-  line-height: 1.6;
-
-  justify-content: center;
-  align-items: flex-start;
-  min-height: 100vh;
-}
-
-form {
+.upgrade-card {
   background-color: #ffffff;
-  padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  max-width: 450px;
-  width: 100%;
-  margin-bottom: 1rem;
-}
-
-form label {
-  display: block;
-  margin-top: 1rem;
-  font-weight: 600;
-  color: #444;
-}
-
-form input {
-  width: 100%;
-  padding: 0.75rem;
-  margin-top: 0.25rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  transition: border 0.3s ease;
-}
-
-form input:focus {
-  border-color: #007bff;
-  outline: none;
-}
-
-button[type="submit"] {
-  margin-top: 1.5rem;
-  background-color: #007bff;
-  color: #fff;
-  padding: 0.75rem;
-  border: none;
-  border-radius: 8px;
-  width: 100%;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button[type="submit"]:hover {
-  background-color: #0056b3;
-}
-
-.password-requirements {
-  display: block;
-  margin-top: 0.5rem;
-  font-size: 0.85rem;
-  color: #888;
-}
-
-.flash-notice {
-  background-color: #e0f7fa;
-  color: #00796b;
-  padding: 1rem;
-  border: 1px solid #4dd0e1;
-  border-radius: 8px;
-  margin-bottom: 1.5rem;
-  font-weight: 600;
-}
-
-.login-link,
-.register-link {
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  overflow: hidden;
   text-align: center;
+}
+
+.upgrade-card img {
+  width: 50px;
+  height: auto;
+  display: block;
+}
+
+.upgrade-card h3 {
+  margin: 1rem 0 0.5rem;
+  color: #0f172a;
+}
+
+.upgrade-card p {
+  margin: 0 1rem 1rem;
+  color: #334155;
   font-size: 0.95rem;
-  margin-top: 1rem;
 }
 
-.login-link a,
-.register-link a {
-  color: #007bff;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.login-link a:hover,
-.register-link a:hover {
-  text-decoration: underline;
-}
-
-/* Responsive */
-@media (max-width: 500px) {
-  form {
-    padding: 1.5rem;
+/* ==============================
+   DESKTOP / LARGE SCREENS
+   ============================== */
+@media (min-width: 1024px) {
+  .upgrades {
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
   }
 
-  .password-requirements {
-    font-size: 0.75rem;
+  .upgrade-card {
+    width: 20%; /* 4 cartes côte à côte avec un petit gap */
   }
 }
 
 
 
-/* Centrage vertical et horizontal de la zone de login */
-.login-wrapper {
-  min-height: 100vh; /* Hauteur pleine de l'écran */
-  display: flex;
-  justify-content: center; /* Centrage horizontal */
-  align-items: center;     /* Centrage vertical */
-  background-color: #f0f2f5;
+
+.upgrade-card img {
+  width: 80px;        /* largeur fixe très petite */
+  height: 80px;       /* hauteur fixe correspondante */
+  object-fit: contain; /* pour garder la proportion et précision */
+  margin: 0.5rem auto; /* centrer horizontalement */
+  display: block;
 }
 
-/* Boîte du formulaire */
-.container {
-  background-color: #fff;
-  padding: 30px 40px;
+
+.upgrade-card {
+  background-color: #d6d5eb;
   border-radius: 12px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-  width: 100%;
-  max-width: 400px;
-}
-
-/* Form & champs */
-form label {
-  display: block;
-  margin-top: 15px;
-  font-weight: bold;
-}
-
-form input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-}
-
-.password-requirements {
-  font-size: 0.85rem;
-  color: #555;
-  margin: 5px 0;
-  display: block;
-}
-
-form button {
-  margin-top: 20px;
-  width: 100%;
-  padding: 12px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-form button:hover {
-  background-color: #0056b3;
-}
-
-.flash-notice {
-  background-color: #e6f7ff;
-  color: #005b96;
-  border: 1px solid #91d5ff;
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 15px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  overflow: hidden;
   text-align: center;
-}
-
-.register-link {
-  text-align: center;
-  margin-top: 15px;
-}
-
-.register-link a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-.register-link a:hover {
-  text-decoration: underline;
-}
-
-
-
-/* Centrage vertical et horizontal de la page register */
-.register-wrapper {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f0f2f5;
-}
-
-/* Boîte du formulaire */
-.container {
-  background-color: #fff;
-  padding: 30px 40px;
-  border-radius: 12px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-  width: 100%;
-  max-width: 450px;
-}
-
-/* Styles communs */
-form label {
-  display: block;
-  margin-top: 15px;
-  font-weight: bold;
-}
-
-form input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-}
-
-.password-requirements {
-  font-size: 0.85rem;
-  color: #555;
-  margin: 5px 0;
-  display: block;
-}
-
-form button {
-  margin-top: 20px;
-  width: 100%;
-  padding: 12px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-form button:hover {
-  background-color: #218838;
-}
-
-.flash-notice {
-  background-color: #fff3cd;
-  color: #856404;
-  border: 1px solid #ffeeba;
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 15px;
-  text-align: center;
-}
-
-.login-link {
-  text-align: center;
-  margin-top: 15px;
-}
-
-.login-link a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-.login-link a:hover {
-  text-decoration: underline;
-}
-
-
-/* Centre tout le contenu dans <main> */
-main {
-  min-height: 100vh; /* prend toute la hauteur de l'écran */
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* centre verticalement */
-  align-items: center;     /* centre horizontalement */
-  background-color: #f4f4f4;
-  padding: 20px;
-}
-
-/* Pour les titres */
-main h1 {
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-/* Pour les formulaires */
-main form {
-  background-color: white;
-  padding: 30px 40px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 500px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-/* Style des labels et inputs */
-main form label {
-  font-weight: bold;
-}
-
-main form input,
-main form textarea,
-main form select {
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-/* Bouton */
-main form button {
-  background-color: #007bff;
-  color: white;
-  font-weight: bold;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-main form button:hover {
-  background-color: #0056b3;
-}
-
-/* Messages flash ou erreurs */
-.flash-message,
-.form-errors {
-  background-color: #fff3cd;
-  border-left: 5px solid #ffc107;
-  padding: 10px 15px;
-  margin-bottom: 15px;
-  width: 100%;
-  max-width: 500px;
-  border-radius: 5px;
-}
-
-
-
-
-
-/* inventory.css */
-
-/* Conteneur du formulaire */
-form {
-  max-width: 600px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background-color: #f9fafb;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* Titres */
-h1 {
-  text-align: center;
-  color: #333;
-  margin-bottom: 1.5rem;
-  font-weight: 700;
-  font-size: 2rem;
-}
-
-/* Labels */
-label {
-  display: block;
-  font-weight: 600;
-  color: #555;
-  margin-bottom: 0.5rem;
-  margin-top: 1rem;
-}
-
-/* Inputs et textarea communs */
-input[type="text"],
-input[type="number"],
-select,
-textarea {
-  width: 100%;
-  padding: 0.5rem 0.75rem;
-  border: 1.8px solid #ccc;
-  border-radius: 5px;
-  font-size: 1rem;
-  font-family: inherit;
-  box-sizing: border-box;
-  transition: border-color 0.3s ease;
-}
-
-/* Focus */
-input[type="text"]:focus,
-input[type="number"]:focus,
-select:focus,
-textarea:focus {
-  border-color: #007BFF;
-  outline: none;
-  box-shadow: 0 0 5px rgba(0,123,255,0.5);
-}
-
-/* Textarea - hauteur plus grande */
-textarea {
-  min-height: 100px;
-  resize: vertical;
-}
-
-/* Bouton */
-button[type="submit"] {
-  margin-top: 2rem;
-  width: 100%;
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  padding: 0.75rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button[type="submit"]:hover {
-  background-color: #0056b3;
-}
-
-/* Messages d'erreur (si tu veux gérer les erreurs) */
-.error-message {
-  color: #cc0000;
-  font-size: 0.9rem;
-  margin-top: 0.25rem;
-}
-
-/* Pour que le select s'aligne bien */
-select {
-  cursor: pointer;
+  padding: 1rem;      /* moins d’espace que précédemment */
 }

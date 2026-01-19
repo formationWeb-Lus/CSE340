@@ -103,7 +103,7 @@ footer {
 
 @media (min-width: 1024px) {
   body {
-    background-image: url("/images/site/small_check.jpg");
+    background-color: azure;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -285,7 +285,7 @@ nav li:hover {
 
 @media (min-width: 1024px) {
   body {
-    background-image: url("/images/site/small_check.jpg");
+    background-color: #d6d5eb;
     background-size: cover;
     background-position: center;
   }
@@ -378,4 +378,57 @@ nav li:hover {
   overflow: hidden;
   text-align: center;
   padding: 1rem;      /* moins d’espace que précédemment */
+}
+
+
+
+/* ==============================
+   INVENTORY DISPLAY (CSE340)
+   ============================== */
+
+#inv-display {
+  display: grid;
+  grid-template-columns: 1fr; /* mobile first */
+  gap: 1.5rem;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+#inv-display li {
+  list-style: none;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+  overflow: hidden;
+  text-align: center;
+  padding: 1rem;
+}
+
+#inv-display img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+#inv-display h2 {
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+  color: #0f172a;
+}
+
+#inv-display span {
+  display: block;
+  font-weight: bold;
+  color: #1e293b;
+}
+
+/* ==============================
+   DESKTOP INVENTORY GRID
+   ============================== */
+@media (min-width: 768px) {
+  #inv-display {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
 }

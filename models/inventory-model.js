@@ -34,7 +34,18 @@ async function getInventoryByClassificationId(classification_id) {
   }
 }
 
+// Get a single vehicle by ID
+async function getVehicleById(inv_id) {
+  const sql = `SELECT * FROM public.inventory WHERE inv_id = $1`
+  const values = [inv_id]
+  return await pool.query(sql, values) // pool = connection PostgreSQL
+}
+
+
+
+
 module.exports = {
   getClassifications,
-  getInventoryByClassificationId
+  getInventoryByClassificationId,
+  getVehicleById,
 }

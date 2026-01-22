@@ -1,10 +1,33 @@
-/* ==============================
-   RESET & GLOBAL (MOBILE FIRST)
-   ============================== */
+/* =========================================================
+   DESIGN SYSTEM (VARIABLES)
+   ========================================================= */
+:root {
+  --primary: #0f172a;
+  --secondary: #1e293b;
+  --accent: #2563eb;
 
-   
+  --bg-main: #f9fafb;
+  --bg-card: #ffffff;
+  --bg-soft: #f1f5f9;
 
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --text-light: #ffffff;
 
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+
+  --shadow-sm: 0 4px 10px rgba(0,0,0,0.08);
+  --shadow-md: 0 10px 25px rgba(0,0,0,0.15);
+
+  --max-width: 1200px;
+}
+
+/* =========================================================
+   RESET & BASE
+   ========================================================= */
+*,
 *::before,
 *::after {
   box-sizing: border-box;
@@ -12,423 +35,366 @@
 
 body {
   margin: 0;
-  font-family: "Segoe UI", Roboto, Arial, sans-serif;
-  background-color: #f9fafb; /* Mobile : fond neutre */
-  color: #1f2933;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
   line-height: 1.6;
 }
 
-/* ==============================
-   MAIN WRAPPER (CONTENU)
-   ============================== */
-
-#wrapper {
-  background-color: #ffffff;
+img {
   max-width: 100%;
+  display: block;
 }
 
-/* ==============================
-   HEADER
-   ============================== */
-
-header {
-  background-color: #0f172a;
-  color: #ffffff;
-  padding: 1rem;
-  text-align: center;
+/* =========================================================
+   GLOBAL WRAPPER
+   ========================================================= */
+#wrapper {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  background-color: var(--bg-card);
+  box-shadow: var(--shadow-md);
 }
 
-header h1 {
+/* =========================================================
+   HEADER (LOGO + MY ACCOUNT)
+   ========================================================= */
+#top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background-color: var(--primary);
+}
+
+.siteName a {
+  color: var(--text-light);
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+#tools a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+#tools a:hover {
+  background-color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* =========================================================
+   NAVIGATION (FIXE)
+   ========================================================= */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
   margin: 0;
-  font-size: 1.6rem;
+  padding: 0.75rem 1rem;
 }
 
-/* ==============================
-   HERO SECTION
-   ============================== */
+nav a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-weight: 500;
+}
 
+nav a:hover {
+  color: var(--accent);
+}
+
+/* =========================================================
+   HERO (HOME)
+ /* Hero section par défaut pour grands écrans */
 .hero {
-  padding: 3rem 1rem;
-  text-align: center;
+  position: relative;
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url("/images/vehicles/crwn-vic.jpg") center / cover no-repeat;
+  border-radius: 0; /* forme standard pour grand écran */
 }
 
-.hero h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+/* Media query pour petits écrans */
+@media (max-width: 768px) {
+  .hero {
+    min-height: 300px;          /* hauteur réduite */
+    background-position: top;    /* recentrer l'image sur le haut */
+    border-radius: 20px;         /* coins arrondis pour un effet plus doux */
+    margin: 10px;                /* un peu de marge autour */
+  }
+}
+
+/* Media query pour très petits écrans (téléphones) */
+@media (max-width: 480px) {
+  .hero {
+    min-height: 200px;          /* encore plus petit */
+    background-position: center; /* recentrer au milieu */
+    border-radius: 10px;         /* coins légèrement arrondis */
+    padding: 2px;
+  }
+}
+
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(89, 90, 90, 0.65);
+}
+
+.hero > * {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  padding: 3rem;
+  text-align: center;
+  color: var(--text-light);
+}
+
+.hero h1 {
+  font-size: 2.4rem;
+  margin-bottom: 0.75rem;
 }
 
 .hero p {
-  font-size: 1.1rem;
-  color: #334155;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #e5e7eb;
 }
 
-/* ==============================
-   FEATURES
-   ============================== */
-
+/* =========================================================
+   FEATURES (HOME)
+   ========================================================= */
 .features {
-  padding: 2rem 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  max-width: var(--max-width);
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+  display: grid;
+  gap: 2rem;
 }
 
 .features article {
-  background-color: #ffffff;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  background-color: var(--bg-card);
+  padding: 2rem 1.5rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
 }
 
-.features h3 {
-  margin-top: 0;
-  color: #0f172a;
+.features h2, .features h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  color: var(--text-main);
 }
 
-/* ==============================
+.features p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   UPGRADES SECTION
+   ========================================================= */
+.upgrades {
+  max-width: var(--max-width);
+  margin: 4rem auto;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.upgrade-card {
+  background-color: var(--bg-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  text-align: center;
+}
+
+.upgrade-card img {
+  width: 90px;
+  height: 90px;
+  padding: 1rem 1rem;
+  object-fit: cover;
+  
+}
+
+.upgrade-card h3 {
+  margin: 1rem 0 0.5rem;
+  font-size: 1.1rem;
+}
+
+.upgrade-card p {
+  padding: 0 1rem 1.5rem;
+  color: var(--text-muted);
+}
+
+/* =========================================================
+   INVENTORY GRID
+   ========================================================= */
+#inv-display {
+  display: grid;
+  gap: 1.5rem;
+  padding: 2rem 1.5rem;
+}
+
+#inv-display li {
+  list-style: none;
+  background-color: var(--bg-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+#inv-display li:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+
+#inv-display img {
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.75rem;
+}
+
+.namePrice hr {
+  border: none;
+  height: 1px;
+  background-color: #e5e7eb;
+  margin: 0.75rem 0;
+}
+
+.namePrice h2 a {
+  text-decoration: none;
+  color: var(--text-main);
+}
+
+.namePrice h2 a:hover {
+  color: var(--accent);
+}
+
+.namePrice span {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* =========================================================
+   VEHICLE DETAIL PAGE
+   ========================================================= */
+.vehicle-detail {
+  display: grid;
+  gap: 2rem;
+  padding: 2rem 1.5rem;
+  max-width: 1000px;
+  margin: 2rem auto;
+  background-color: var(--bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.vehicle-detail h1 {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.vehicle-detail img {
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.details p {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  background-color: var(--bg-soft);
+  border-radius: var(--radius-sm);
+}
+
+.details p:first-child {
+  background-color: #e0f2fe;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #0369a1;
+}
+
+/* =========================================================
    FOOTER
-   ============================== */
-
+   ========================================================= */
 footer {
-  background-color: #0f172a;
-  color: #ffffff;
+  background-color: var(--primary);
+  color: var(--text-light);
   text-align: center;
   padding: 1rem;
   font-size: 0.9rem;
 }
 
-/* ==============================
-   DESKTOP ONLY (LARGE SCREENS)
-   ============================== */
-
-@media (min-width: 1024px) {
-  body {
-    background-color: azure;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-  }
-
-  #wrapper {
-    max-width: 1200px;
-    margin: 3rem auto;
-    border-radius: 12px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
-  }
-
-  .features {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .features article {
-    width: 30%;
-  }
-}
-
-
-/* HERO IMAGE */
-.hero {
-  position: relative;
-  background-image: url("/images/vehicles/crwn-vic.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 450px; /* ajustable */
-}
-
-/* CARTE FLOTTANTE EN BAS DROITE */
-.hero-card {
-  position: absolute;
-  bottom: 28px;      /* distance du bas */
-  right: 10px;       /* distance de la droite */
-  background-color: rgba(255, 255, 255, 0.445); /* semi-transparent */
-  padding: 1.8rem;
-  border-radius: 10px;
-  max-width: 280px;
-  text-align: left;
-  box-shadow: 0 8px 10px rgba(0,0,0,0.3);
-}
-
-.hero-card h1 {
-  font-size: 1.8rem;
-  margin-bottom: 0.5rem;
-  color: #2a0f14;
-}
-
-.hero-card p {
-  font-size: 1rem;
-  color: #bd0624;
-}
-
-/* RESPONSIVE MOBILE */
-@media (max-width: 768px) {
-  .hero {
-    height: 300px;
-  }
-
-  .hero-card {
-    bottom: 10px;
-    right: 10px;
-    max-width: 400px;
-    padding: 1rem;
-  }
-
-  .hero-card h1 {
-    font-size: 1rem;
-  }
-
-  .hero-card p {
-    font-size: 0.9rem;
-  }
-}
-
-
-/* ==============================
-   HEADER (CSE Motors + My Account)
-   ============================== */
-
-#top-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  background-color: #0f172a;
-}
-
-.siteName a {
-  color: #ffffff;
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-#tools a {
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-/* ==============================
-   NAVIGATION (MENU EN LIGNE)
-   ============================== */
-
-nav {
-  background-color: #1e293b;
-}
-
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0.75rem 1rem;
-  display: flex;              /* 🔑 menu en ligne */
-  gap: 1.5rem;
-}
-
-nav li {
-  color: #ffffff;
-  font-weight: 500;
-  cursor: pointer;
-}
-
-nav li:hover {
-  text-decoration: underline;
-}
-
-/* ==============================
-   WRAPPER
-   ============================== */
-
-#wrapper {
-  background-color: #ffffff;
-}
-
-/* ==============================
-   HERO (JUSTE SOUS LA NAV)
-   ============================== */
-
-.hero {
-  padding: 3rem 1rem;
-  text-align: center;
-}
-
-.hero h1 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-}
-
-.hero p {
-  font-size: 1.1rem;
-  color: #334155;
-}
-
-/* ==============================
-   FEATURES
-   ============================== */
-
-.features {
-  padding: 2rem 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.features article {
-  background-color: #ffffff;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
-}
-
-/* ==============================
-   DESKTOP (GRANDS ÉCRANS)
-   ============================== */
-
-@media (min-width: 1024px) {
-  body {
-    background-color: #d6d5eb;
-    background-size: cover;
-    background-position: center;
-  }
-
-  #wrapper {
-    max-width: 1200px;
-    margin: 2rem auto;
-    border-radius: 12px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
-  }
-
-  .features {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .features article {
-    width: 30%;
-  }
-}
-
-
-
-/* ==============================
-   UPGRADES SECTION
-   ============================== */
-.upgrades {
-  display: flex;
-  flex-direction: column; /* mobile first */
-  gap: 1.5rem;
-  padding: 2rem 1rem;
-}
-
-.upgrade-card {
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-  overflow: hidden;
-  text-align: center;
-}
-
-.upgrade-card img {
-  width: 50px;
-  height: auto;
-  display: block;
-}
-
-.upgrade-card h3 {
-  margin: 1rem 0 0.5rem;
-  color: #0f172a;
-}
-
-.upgrade-card p {
-  margin: 0 1rem 1rem;
-  color: #334155;
-  font-size: 0.95rem;
-}
-
-/* ==============================
-   DESKTOP / LARGE SCREENS
-   ============================== */
-@media (min-width: 1024px) {
-  .upgrades {
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-
-  .upgrade-card {
-    width: 20%; /* 4 cartes côte à côte avec un petit gap */
-  }
-}
-
-
-
-
-.upgrade-card img {
-  width: 80px;        /* largeur fixe très petite */
-  height: 80px;       /* hauteur fixe correspondante */
-  object-fit: contain; /* pour garder la proportion et précision */
-  margin: 0.5rem auto; /* centrer horizontalement */
-  display: block;
-}
-
-
-.upgrade-card {
-  background-color: #d6d5eb;
-  border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-  overflow: hidden;
-  text-align: center;
-  padding: 1rem;      /* moins d’espace que précédemment */
-}
-
-
-
-/* ==============================
-   INVENTORY DISPLAY (CSE340)
-   ============================== */
-
-#inv-display {
-  display: grid;
-  grid-template-columns: 1fr; /* mobile first */
-  gap: 1.5rem;
-  padding: 1rem;
-  margin: 1rem 0;
-}
-
-#inv-display li {
-  list-style: none;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.12);
-  overflow: hidden;
-  text-align: center;
-  padding: 1rem;
-}
-
-#inv-display img {
-  width: 100%;
-  max-width: 300px;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-
-#inv-display h2 {
-  font-size: 1.1rem;
-  margin: 0.5rem 0;
-  color: #0f172a;
-}
-
-#inv-display span {
-  display: block;
-  font-weight: bold;
-  color: #1e293b;
-}
-
-/* ==============================
-   DESKTOP INVENTORY GRID
-   ============================== */
+/* =========================================================
+   RESPONSIVE (TABLET & DESKTOP)
+   ========================================================= */
 @media (min-width: 768px) {
   #inv-display {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  .vehicle-detail {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .vehicle-detail h1 {
+    grid-column: 1 / -1;
+  }
+
+  .features {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .upgrades {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .upgrades {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 500px) {
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .upgrades {
+    grid-template-columns: 1fr;
   }
 }

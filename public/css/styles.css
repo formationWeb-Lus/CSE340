@@ -398,3 +398,197 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+
+
+/* css pour le formilaire juste*/
+
+/* ==========================
+   Login Page
+========================== */
+
+.login-container {
+  max-width: 400px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #c3c0ee;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form label {
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.login-form input {
+  padding: 0.6rem;
+  margin-top: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.login-form button {
+  margin-top: 1.5rem;
+  padding: 0.7rem;
+  background-color: #012723;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login-form button:hover {
+  opacity: 0.9;
+}
+/* ==========================
+   Register Page (formulaire)
+========================== */
+
+.register-container {
+  max-width: 400px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #b393f0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.register-container h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-form label {
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.register-form input {
+  padding: 0.6rem;
+  margin-top: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.register-form button {
+  margin-top: 1.5rem;
+  padding: 0.7rem;
+  background-color: #012723;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.register-form button:hover {
+  opacity: 0.9;
+}
+
+/* ========================================
+   Liens
+======================================== */
+.register-link,
+.login-link {
+  margin-top: 1.2rem;
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
+/* ========================================
+   Flash messages (success / error)
+======================================== */
+.flash-success,
+.flash-error,
+.flash-message {
+  padding: 0.7rem 10px;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.flash-message {
+  background-color: #fdecea;
+  color: #611a15;
+}
+
+.flash-success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.flash-error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* ========================================
+   Info message
+======================================== */
+.info-message {
+  background-color: #eef6f4;
+  color: #012723;
+  padding: 0.7rem 10px;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* ========================================
+   Password rules
+======================================== */
+.password-rules {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.password-rules ul {
+  margin: 0.5rem 0 0 1rem;
+  padding: 0;
+}
+
+/* ========================================
+   Toggle Password Button
+======================================== */
+#togglePassword {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  border: 1px solid #012723;
+  background-color: #260245;
+  color: #fff;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+#togglePassword:hover {
+  background-color: #e9c46a;
+  color: #101213;
+}
+
+/* ========================================
+   Input validation styling
+======================================== */
+input:required:invalid {
+  border: 2px solid red;
+}
+
+input:required:valid {
+  border: 2px solid green;
+}

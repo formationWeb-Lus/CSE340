@@ -299,6 +299,7 @@ nav a:hover {
   color: var(--accent);
 }
 
+
 /* =========================================================
    VEHICLE DETAIL PAGE
    ========================================================= */
@@ -343,15 +344,28 @@ nav a:hover {
   color: #0369a1;
 }
 
+
 /* =========================================================
    FOOTER
    ========================================================= */
+
+
+footer a {
+  color: red; /* blanc pur */
+}
+
+footer a:hover {
+  color: #93c5fd;
+}
+
+
 footer {
   background-color: var(--primary);
   color: var(--text-light);
   text-align: center;
   padding: 1rem;
   font-size: 0.9rem;
+  top: 0;
 }
 
 /* =========================================================
@@ -591,4 +605,206 @@ input:required:invalid {
 
 input:required:valid {
   border: 2px solid green;
+}
+
+
+
+/*CSS pour la vue Inventory Management
+
+👉 À mettre dans ton fichier CSS principal*/
+/* ===== Inventory Management ===== */
+/* Center Inventory Management content */
+
+.inventory-management {
+  list-style: none;
+  padding: 0;
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: auto;
+}
+
+.inventory-management li {
+  margin-bottom: 1rem;
+}
+
+.inventory-management li a {
+  display: block;
+  padding: 0.75rem 1rem;
+  background-color: #1e88e5;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  text-align: center;
+}
+
+
+
+
+
+
+/*CSS pour Add New Classification*/
+
+/* 👉 À ajouter dans mon fichier CSS principal*/
+
+/* ===== Add Classification Form ===== */
+
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Messages d'erreur */
+.error-list {
+  max-width: 400px;
+  margin: 0 auto 1.5rem;
+  padding: 1rem;
+  background-color: #fdecea;
+  border-left: 5px solid #d32f2f;
+  list-style: none;
+}
+
+.error-list li {
+  color: #b71c1c;
+  font-weight: 600;
+}
+
+/* Message succès */
+.notice {
+  max-width: 400px;
+  margin: 0 auto 1.5rem;
+  padding: 1rem;
+  background-color: #e6f4ea;
+  border-left: 5px solid #2e7d32;
+  color: #1b5e20;
+  font-weight: 600;
+}
+
+/* Formulaire */
+form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.hint {
+  display: block;
+  font-size: 0.85rem;
+  color: #555;
+  font-weight: normal;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 1.5rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+button {
+  width: 100%;
+  padding: 0.7rem;
+  background-color: #1e88e5;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1565c0;
+}
+
+
+
+form {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  width: 400px; /* largeur fixe */
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+  height: 80px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px;
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.error-list {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 5px;
+  list-style-type: none;
+}
+
+.notice {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+
+/* BODY FLEX POUR FOOTER STICKY */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* 100% de la hauteur de l'écran */
+  margin: 0;
+}
+
+/* CONTENU PRINCIPAL (le body de chaque page) */
+body > main, body > div#wrapper {
+  flex: 1; /* prend tout l'espace restant pour pousser le footer en bas */
 }

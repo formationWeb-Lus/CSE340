@@ -1,20 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title><%= title %> | CSE Motors</title>
-  <link rel="stylesheet" href="/css/styles.css" media="screen" />
-</head>
-
 <body>
 
- <%- include('../partials/header') %>
-<%- include('../partials/navigation') %>
+  <%- include('../partials/head') %>
+  <%- include('../partials/header') %>
+  <%- include('../partials/navigation') %>
 
+  <main>
+    <%- body %>
+  </main>
 
-  <!-- 🔽 LE BODY DE index.ejs COMMENCE ICI -->
-  <%- body %>
+  <%- include('../partials/footer') %>
 
 </body>
-</html>

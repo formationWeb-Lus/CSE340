@@ -64,4 +64,71 @@ validate.checkRegData = async (req, res, next) => {
   next()
 }
 
+/* **********************************
+ * Classification Data Validation Rules
+ * ********************************* */
+validate.classificationRules = () => {
+  return [
+    body("classification_name")
+      .trim()
+      .notEmpty()
+      .isAlphanumeric()
+      .withMessage(
+        "Classification name must contain only letters and numbers (no spaces or special characters)."
+      ),
+  ]
+}
+
+/* ******************************
+ * Check data and return errors or continue
+ * ***************************** */
+validate.checkClassificationData = async (req, res, next) => {
+  const { classification_name } = req.body
+  const errors = validationResult(req)
+
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    res.render("inventory/add-classification", {
+      title: "Add Classification",
+      nav,
+      errors: errors.array(),
+      classification_name, // (optionnel, mais propre)
+    })
+    return
+  }
+  next()
+}
+
+
+
+validate.inventoryRules = () => {
+  return [
+    body("inv_make").trim().notEmpty(),
+    body("inv_model").trim().notEmpty(),
+    body("inv_year").isInt({ min: 1900 }),
+    body("inv_price").isFloat({ min: 0 }),
+    body("inv_miles").isInt({ min: 0 }),
+    body("inv_color").trim().notEmpty(),
+    body("classification_id").notEmpty(),
+  ]
+}
+
+validate.checkInventoryData = async (req, res, next) => {
+  const errors = validationResult(req)
+  let classificationList =
+    await utilities.buildClassificationList(req.body.classification_id)
+
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    return res.render("inventory/add-inventory", {
+      title: "Add Inventory",
+      nav,
+      classificationList,
+      errors: errors.array(),
+      ...req.body, // persistance 🔥
+    })
+  }
+  next()
+}
+
 module.exports = validate

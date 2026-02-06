@@ -1,4 +1,4 @@
-<h1>Add New Inventory</h1>
+<h1>Edit Inventory</h1>
 
 <% if (errors) { %>
   <ul class="error-list">
@@ -8,8 +8,7 @@
   </ul>
 <% } %>
 
-<form action="/inv/add-inventory" method="post">
-
+<form id="updateForm" action="/inv/update" method="post">
   <label>Make</label>
   <input type="text" name="inv_make" required value="<%= inv_make || '' %>">
 
@@ -38,7 +37,15 @@
   <input type="text" name="inv_color" required value="<%= inv_color || '' %>">
 
   <label>Classification</label>
-  <%- classificationList %>
+  <!-- Injecte le HTML des options directement -->
+  <%- classificationSelect %>
 
-  <button type="submit">Add Inventory</button>
+  <!-- Bouton désactivé jusqu'au changement -->
+  <button type="submit" disabled>Update Vehicle</button>
+
+  <!-- Champ caché pour inv_id -->
+  <input type="hidden" name="inv_id" value="<%= inv_id %>">
 </form>
+
+<!-- Lien vers le JS qui active le bouton quand le formulaire change -->
+<script src="/js/inv-update.js"></script>

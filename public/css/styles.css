@@ -789,7 +789,7 @@ button:hover {
 
 .notice {
   background-color: #d1ecf1;
-  color: #0c5460;
+  color: rgb(218, 11, 11);
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 15px;
@@ -808,3 +808,262 @@ body {
 body > main, body > div#wrapper {
   flex: 1; /* prend tout l'espace restant pour pousser le footer en bas */
 }
+
+
+
+
+/* ===========================
+   Flash messages - général
+=========================== */
+
+.flash-center {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+/* Message succès / notice */
+.notice {
+  background-color: #e6f7ec;
+  color: #0f5132;
+  border: 1px solid #badbcc;
+  padding: 12px 18px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ===========================
+   Message erreur (login requis)
+=========================== */
+
+.error {
+  background-color: #f8d7da;
+  color: #842029;
+  border: 1px solid #f5c2c7;
+  padding: 12px 18px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ===========================
+   Texte connecté
+=========================== */
+
+.logged-in-text {
+  text-align: center;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+}
+
+
+
+
+
+/* =========================
+   GLOBAL
+========================= */
+
+h1, h2, h3 {
+  margin-bottom: 1rem;
+  color: #1f2933;
+  text-align: center;
+}
+
+/* =========================
+   FORMS
+========================= */
+
+/* ===========================
+   ACCOUNT MANAGEMENT PAGE
+=========================== */
+
+.account-management {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+/* Title */
+.account-management .page-title {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+/* Centered action container */
+.action-box {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+/* Action links (buttons style) */
+.action-link {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: blue;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.action-link:hover {
+  background-color: #444;
+  transform: translateY(-2px);
+}
+
+/* Welcome text */
+.welcome {
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+}
+
+/* Inventory section */
+.inventory-section {
+  margin-top: 3rem;
+}
+
+.inventory-section h3 {
+  margin-bottom: 1rem;
+}
+
+/* Flash notice */
+.notice {
+  margin: 1.5rem auto;
+  padding: 1rem;
+  background-color: #e6ffe6;
+  color: blue;
+  border-radius: 6px;
+  max-width: 500px;
+  font-weight: 500;
+}
+
+
+
+
+
+form {
+  background: #ffffff;
+  width: 100%;
+  max-width: 420px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+label {
+  font-weight: 600;
+  color: #374151;
+}
+
+input {
+  padding: 0.65rem;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  font-size: 1rem;
+}
+
+input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+button {
+  margin-top: 1rem;
+  padding: 0.7rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: none;
+  background-color: #2563eb;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #1e40af;
+}
+
+/* =========================
+   SEPARATORS
+========================= */
+hr {
+  width: 100%;
+  max-width: 420px;
+  margin: 2rem 0;
+  border: none;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* =========================
+   MESSAGES
+========================= */
+.notice {
+  background-color: #dcfce7;
+  color: #166534;
+  padding: 0.8rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  max-width: 420px;
+  width: 100%;
+}
+
+.errors {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.5rem;
+  max-width: 420px;
+  width: 100%;
+}
+
+.errors li {
+  background-color: #fee2e2;
+  color: #991b1b;
+  padding: 0.6rem;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+/* =========================
+   ACCOUNT MANAGEMENT LINKS
+========================= */
+main p {
+  text-align: center;
+}
+
+main a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  color: #2563eb;
+}
+
+main a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 480px) {
+  form {
+    padding: 1.5rem;
+  }
+}
+

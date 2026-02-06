@@ -1,36 +1,18 @@
-const utilities = require(".")
+const utilities = require("../utilities")
 const { body, validationResult } = require("express-validator")
+const accountModel = require("../models/account-model")
+
 const validate = {}
 
 /* **********************************
- * Registration Data Validation Rules
+ * Registration Rules
  * ********************************* */
 validate.registrationRules = () => {
   return [
-    body("account_firstname")
-      .trim()
-      .escape()
-      .notEmpty()
-      .isLength({ min: 1 })
-      .withMessage("Please provide a first name."),
-
-    body("account_lastname")
-      .trim()
-      .escape()
-      .notEmpty()
-      .isLength({ min: 2 })
-      .withMessage("Please provide a last name."),
-
-    body("account_email")
-      .trim()
-      .notEmpty()
-      .isEmail()
-      .normalizeEmail()
-      .withMessage("A valid email is required."),
-
+    body("account_firstname").trim().notEmpty().withMessage("First name required."),
+    body("account_lastname").trim().notEmpty().withMessage("Last name required."),
+    body("account_email").trim().isEmail().withMessage("Valid email required."),
     body("account_password")
-      .trim()
-      .notEmpty()
       .isStrongPassword({
         minLength: 12,
         minLowercase: 1,
@@ -42,90 +24,116 @@ validate.registrationRules = () => {
   ]
 }
 
-/* ******************************
- * Check data and return errors or continue to registration
- * ***************************** */
+/* **********************************
+ * Check Registration Data
+ * ********************************* */
 validate.checkRegData = async (req, res, next) => {
-  const { account_firstname, account_lastname, account_email } = req.body
   const errors = validationResult(req)
-
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav()
-    res.render("account/register", {
-      title: "Registration",
+    return res.render("account/register", {
+      title: "Register",
       nav,
       errors,
-      account_firstname,
-      account_lastname,
-      account_email,
+      ...req.body,
     })
-    return
   }
   next()
 }
 
 /* **********************************
- * Classification Data Validation Rules
+ * Login Rules
  * ********************************* */
-validate.classificationRules = () => {
+validate.loginRules = () => {
   return [
-    body("classification_name")
-      .trim()
-      .notEmpty()
-      .isAlphanumeric()
-      .withMessage(
-        "Classification name must contain only letters and numbers (no spaces or special characters)."
-      ),
+    body("account_email").trim().isEmail().withMessage("Valid email required."),
+    body("account_password").trim().notEmpty().withMessage("Password required."),
   ]
 }
 
-/* ******************************
- * Check data and return errors or continue
- * ***************************** */
-validate.checkClassificationData = async (req, res, next) => {
-  const { classification_name } = req.body
+/* **********************************
+ * Check Login Data
+ * ********************************* */
+validate.checkLoginData = async (req, res, next) => {
   const errors = validationResult(req)
-
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav()
-    res.render("inventory/add-classification", {
-      title: "Add Classification",
+    return res.render("account/login", {
+      title: "Login",
       nav,
-      errors: errors.array(),
-      classification_name, // (optionnel, mais propre)
+      errors,
+      account_email: req.body.account_email,
     })
-    return
   }
   next()
 }
 
-
-
-validate.inventoryRules = () => {
+/* **************************************
+ * Update Account Rules
+ * ************************************* */
+validate.updateAccountRules = () => {
   return [
-    body("inv_make").trim().notEmpty(),
-    body("inv_model").trim().notEmpty(),
-    body("inv_year").isInt({ min: 1900 }),
-    body("inv_price").isFloat({ min: 0 }),
-    body("inv_miles").isInt({ min: 0 }),
-    body("inv_color").trim().notEmpty(),
-    body("classification_id").notEmpty(),
+    body("account_firstname").trim().notEmpty().withMessage("First name required."),
+    body("account_lastname").trim().notEmpty().withMessage("Last name required."),
+    body("account_email")
+      .trim()
+      .isEmail()
+      .withMessage("Valid email required.")
+      .custom(async (email, { req }) => {
+        const account = await accountModel.getAccountByEmail(email)
+        if (account && account.account_id != req.body.account_id) {
+          throw new Error("Email already exists.")
+        }
+      }),
   ]
 }
 
-validate.checkInventoryData = async (req, res, next) => {
+/* **************************************
+ * Check Update Account
+ * ************************************* */
+validate.checkUpdateAccount = async (req, res, next) => {
   const errors = validationResult(req)
-  let classificationList =
-    await utilities.buildClassificationList(req.body.classification_id)
-
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav()
-    return res.render("inventory/add-inventory", {
-      title: "Add Inventory",
+    return res.render("account/update", {
+      title: "Update Account",
       nav,
-      classificationList,
-      errors: errors.array(),
-      ...req.body, // persistance 🔥
+      errors,
+      account: req.body,
+    })
+  }
+  next()
+}
+
+/* **************************************
+ * Password Rules
+ * ************************************* */
+validate.passwordRules = () => {
+  return [
+    body("account_password")
+      .isStrongPassword({
+        minLength: 12,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+      })
+      .withMessage("Password does not meet requirements."),
+  ]
+}
+
+/* **************************************
+ * Check Password
+ * ************************************* */
+validate.checkPassword = async (req, res, next) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    return res.render("account/update", {
+      title: "Update Account",
+      nav,
+      errors,
+      account: req.body,
     })
   }
   next()

@@ -1,4 +1,6 @@
 const invModel = require("../models/inventory-model")
+const jwt = require("jsonwebtoken")
+
 const Util = {}
 
 /* ************************
@@ -25,7 +27,7 @@ Util.getNav = async function () {
 
 /* **************************************
  * Build the classification grid HTML
- * ************************************ */
+ ************************************** */
 Util.buildClassificationGrid = async function (data) {
   let grid = ""
 
@@ -61,31 +63,36 @@ Util.buildClassificationGrid = async function (data) {
   return grid
 }
 
-
-Util.buildVehicleDetail = function(vehicle) {
+/* **************************************
+ * Build vehicle detail HTML
+ ************************************** */
+Util.buildVehicleDetail = function (vehicle) {
   return `
     <section class="vehicle-detail">
       <h1>${vehicle.inv_make} ${vehicle.inv_model}</h1>
       <img src="${vehicle.inv_image}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model}">
       <div class="details">
-       <p><strong>Price:</strong> $${new Intl.NumberFormat("en-US").format(vehicle.inv_price)}</p>
+        <p><strong>Price:</strong> $${new Intl.NumberFormat("en-US").format(vehicle.inv_price)}</p>
         <p><strong>Description:</strong> ${vehicle.inv_description}</p>
         <p><strong>Color:</strong> ${vehicle.inv_color}</p>
         <p><strong>Year:</strong> ${vehicle.inv_year}</p>
-         <p><strong>Mileage:</strong> ${new Intl.NumberFormat("en-US").format(vehicle.inv_miles)} miles</p>
-       </div>
+        <p><strong>Mileage:</strong> ${new Intl.NumberFormat("en-US").format(vehicle.inv_miles)} miles</p>
+      </div>
     </section>
   `
 }
 
-
+/* **************************************
+ * Build classification dropdown list
+ ************************************** */
 Util.buildClassificationList = async function (classification_id = null) {
-  let data = await invModel.getClassifications()
-  let classificationList =
-    '<select name="classification_id" required>'
+  const data = await invModel.getClassifications()
+ let classificationList =
+  '<select id="classificationList" name="classification_id" required>'
+
   classificationList += "<option value=''>Choose a Classification</option>"
 
-  data.rows.forEach(row => {
+  data.rows.forEach((row) => {
     classificationList += `<option value="${row.classification_id}"`
     if (classification_id == row.classification_id) {
       classificationList += " selected"
@@ -97,14 +104,71 @@ Util.buildClassificationList = async function (classification_id = null) {
   return classificationList
 }
 
+/* ****************************************
+ * JWT Check Middleware
+ **************************************** */
+Util.checkJWTToken = function (req, res, next) {
+  const token = req.cookies.jwt
 
+  if (!token) {
+    res.locals.loggedin = false
+    return next()
+  }
 
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
+    if (err) {
+      res.clearCookie("jwt")
+      res.locals.loggedin = false
+      return next()
+    }
+
+    res.locals.loggedin = true
+    res.locals.accountData = decoded
+    next()
+  })
+}
 
 /* ****************************************
- * Middleware For Handling Errors
- * Wrap other function in this for 
- * General Error Handling
+ * Error Handling Wrapper
  **************************************** */
-Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
+Util.handleErrors = fn => (req, res, next) =>
+  Promise.resolve(fn(req, res, next)).catch(next)
+
+/* ****************************************
+ *  Check Login (Authorization)
+ * ************************************ */
+/* ****************************************
+ *  Check Login (Authorization)
+ * ************************************ */
+Util.checkLogin = (req, res, next) => {
+  if (res.locals.loggedin) {
+    next()
+  } else {
+    req.flash("error", "Please log in before you go to this page.")
+    return res.redirect("/account/login")
+  }
+}
+
+/* ****************************************
+ * Check Employee or Admin
+ * ************************************ */
+Util.checkEmployeeOrAdmin = (req, res, next) => {
+  if (
+    res.locals.loggedin &&
+    res.locals.accountData &&
+    (
+      res.locals.accountData.account_type === "Employee" ||
+      res.locals.accountData.account_type === "Admin"
+    )
+  ) {
+    return next()
+  }
+
+  req.flash("notice", "Please log in with proper credentials.")
+  return res.redirect("/account/login")
+}
+
+
+
 
 module.exports = Util

@@ -1,8 +1,13 @@
 const express = require("express")
 const router = new express.Router()
+
 const invController = require("../controllers/invController")
 const utilities = require("../utilities")
-const validate = require("../utilities/account-validation") // UN SEUL require
+const validate = require("../utilities/inventory-validation")
+
+/* ***************************
+ * PUBLIC ROUTES (PAS PROTÉGÉES)
+ * *************************** */
 
 // Afficher les véhicules par classification
 router.get(
@@ -16,42 +21,73 @@ router.get(
   utilities.handleErrors(invController.buildVehicleDetail)
 )
 
-// Vue de gestion
+// Récupérer l'inventaire en JSON (AJAX)
 router.get(
-  "/",
-  utilities.handleErrors(invController.buildManagement)
+  "/getInventory/:classification_id",
+  utilities.handleErrors(invController.getInventoryJSON)
 )
 
-/* Afficher le formulaire d'ajout de classification */
+/* ***************************
+ * MANAGEMENT ROUTES
+ * Employee / Admin ONLY
+ * *************************** */
 
-// afficher le formulaire
+// Vue de gestion inventory
+router.get(
+  "/",
+  utilities.checkEmployeeOrAdmin,
+  utilities.handleErrors(invController.buildManagementView)
+)
+
+/* ===== CLASSIFICATION ===== */
+
+// Afficher le formulaire d'ajout de classification
 router.get(
   "/add-classification",
+  utilities.checkEmployeeOrAdmin,
   utilities.handleErrors(invController.buildAddClassification)
 )
 
-// traiter le formulaire
+// Traiter l'ajout de classification
 router.post(
   "/add-classification",
+  utilities.checkEmployeeOrAdmin,
   validate.classificationRules(),
   validate.checkClassificationData,
   utilities.handleErrors(invController.addClassification)
 )
 
-/* Ajouter un nouvel inventaire */
+/* ===== INVENTORY ===== */
 
-// afficher le formulaire
+// Afficher le formulaire d'ajout d'inventaire
 router.get(
   "/add-inventory",
+  utilities.checkEmployeeOrAdmin,
   utilities.handleErrors(invController.buildAddInventory)
 )
 
-// traiter le formulaire
+// Traiter l'ajout d'inventaire
 router.post(
   "/add-inventory",
+  utilities.checkEmployeeOrAdmin,
   validate.inventoryRules(),
   validate.checkInventoryData,
   utilities.handleErrors(invController.addInventory)
+)
+
+// Afficher le formulaire de modification
+router.get(
+  "/edit/:inv_id",
+  utilities.checkEmployeeOrAdmin,
+  utilities.handleErrors(invController.editInventoryView)
+)
+
+// Traiter la modification
+router.post(
+  "/update",
+  utilities.checkEmployeeOrAdmin,
+  validate.checkUpdateData,
+  utilities.handleErrors(invController.updateInventory)
 )
 
 module.exports = router

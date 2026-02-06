@@ -2,104 +2,107 @@
  * Server.js - CSE340 Project
  * ============================ */
 
-// Packages
 const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
 const session = require("express-session")
+const flash = require("connect-flash")
 const pool = require("./database/")
+const cookieParser = require("cookie-parser")
 require("dotenv").config()
 
 // Routes & Controllers
-const accountRoute = require("./routes/accountRoute")
 const baseController = require("./controllers/baseController")
-const inventoryRoute = require("./routes/invRoute") // <-- corrigé ici
+const inventoryRoute = require("./routes/invRoute")
+const accountRoute = require("./routes/accountRoute")
 const staticRoutes = require("./routes/static")
-const utilities = require("./utilities/") // important pour getNav, handleErrors
+const utilities = require("./utilities/")
 
-// App init
 const app = express()
 
-/* ============================
- * View Engine
- * ============================ */
+// ============================
+// View Engine
+// ============================
 app.set("view engine", "ejs")
 app.use(expressLayouts)
 app.set("layout", "layouts/layout")
 
-/* ============================
- * Middleware
- * ============================ */
-// Sessions avec PostgreSQL
+// ============================
+// Sessions (UNE SEULE FOIS)
+// ============================
 app.use(session({
-  store: new (require('connect-pg-simple')(session))({
+  store: new (require("connect-pg-simple")(session))({
     createTableIfMissing: true,
     pool,
   }),
   secret: process.env.SESSION_SECRET,
-  resave: true,
-  saveUninitialized: true,
-  name: 'sessionId',
+  resave: false,
+  saveUninitialized: false,
+  name: "sessionId",
 }))
 
-app.use(require('connect-flash')())
-app.use(function(req, res, next){
-  res.locals.messages = require('express-messages')(req, res)
+// ============================
+// Flash messages (CORRECT)
+// ============================
+app.use(flash())
+
+app.use((req, res, next) => {
+  res.locals.messages = {
+    notice: req.flash("notice"),
+    success: req.flash("success"),
+    error: req.flash("error"),
+  }
   next()
 })
 
+// ============================
 // Body parsing
+// ============================
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+
+// Cookies (JWT)
+app.use(cookieParser())
+
+// JWT middleware global
+app.use(utilities.checkJWTToken)
 
 // Static files
 app.use(express.static("public"))
 app.use(staticRoutes)
 
-/* ============================
- * Routes
- * ============================ */
-// Home page
+// ============================
+// Routes
+// ============================
 app.get("/", utilities.handleErrors(baseController.buildHome))
-
-// Inventory routes
 app.use("/inv", inventoryRoute)
-
-// Account routes
 app.use("/account", accountRoute)
 
-// Route volontaire pour 500
-app.get("/trigger-error", (req, res, next) => {
-  next(new Error("Forced 500 error for testing"))
-})
-
-// 404 - must be last route
+// 404
 app.use(async (req, res, next) => {
   next({ status: 404, message: "Sorry, we appear to have lost that page." })
 })
 
-// Middleware d'erreur
+// Global error handler
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav()
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
 
-  let message
-  if(err.status === 404) {
-    message = err.message
-  } else {
-    message = "Oh no! There was a crash. Maybe try a different route?"
-  }
+  const message =
+    err.status === 404
+      ? err.message
+      : "Oh no! There was a crash. Maybe try a different route?"
 
-  res.render("errors/error", {
+  res.status(err.status || 500).render("errors/error", {
     title: err.status || "Server Error",
     message,
-    nav
+    nav,
   })
 })
 
-/* ============================
- * Server
- * ============================ */
+// ============================
+// Server
+// ============================
 const port = process.env.PORT || 5500
 app.listen(port, () => {
-  console.log(`App running on port ${port}`)
+  console.log(`✅ App running on port ${port}`)
 })

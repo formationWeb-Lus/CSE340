@@ -1067,3 +1067,45 @@ main a:hover {
   }
 }
 
+
+
+.errors {
+    background-color: #fee2e2;
+    color: #991b1b;
+    padding: 1rem;
+    border-radius: 6px;
+    list-style: none;
+  }
+
+  .notice {
+    background-color: #d1fae5;
+    color: #065f46;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+  }
+
+  .error {
+    background-color: #fee2e2;
+    color: #991b1b;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+  }
+
+  .password-wrapper {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .password-wrapper button {
+    padding: 0.4rem 0.7rem;
+    cursor: pointer;
+  }
+
+  .password-rule {
+    font-size: 0.9rem;
+    color: #555;
+  }

@@ -1,6 +1,7 @@
 <main>
   <h1><%= title %></h1>
 
+  <!-- ERRORS -->
   <% if (errors && errors.length > 0) { %>
     <ul class="errors">
       <% errors.forEach(error => { %>
@@ -9,8 +10,13 @@
     </ul>
   <% } %>
 
-  <% if (message) { %>
-    <p class="notice"><%= message %></p>
+  <!-- FLASH MESSAGE -->
+  <% if (messages && messages.notice) { %>
+    <div class="notice"><%= messages.notice %></div>
+  <% } %>
+
+  <% if (messages && messages.error) { %>
+    <div class="error"><%= messages.error %></div>
   <% } %>
 
   <!-- ===================== -->
@@ -57,14 +63,46 @@
     <input type="hidden" name="account_id" value="<%= account.account_id %>">
 
     <label for="account_password">New Password</label>
-    <input
-      id="account_password"
-      type="password"
-      name="account_password"
-      required>
 
-    <p>Password must be at least 12 characters.</p>
+    <div class="password-wrapper">
+      <input
+        id="account_password"
+        type="password"
+        name="account_password"
+        required>
+
+      <button
+        type="button"
+        id="togglePassword"
+        aria-label="Show or hide password">
+        Show Password
+      </button>
+    </div>
+
+    <p class="password-rule">
+      Password must be at least 12 characters and include uppercase,
+      lowercase, number, and special character.
+    </p>
 
     <button type="submit">Change Password</button>
   </form>
 </main>
+
+<!-- ===================== -->
+<!-- SHOW / HIDE PASSWORD -->
+<!-- ===================== -->
+<script>
+  const togglePassword = document.getElementById("togglePassword");
+  const passwordInput = document.getElementById("account_password");
+
+  if (togglePassword && passwordInput) {
+    togglePassword.addEventListener("click", () => {
+      const isHidden = passwordInput.type === "password";
+
+      passwordInput.type = isHidden ? "text" : "password";
+      togglePassword.textContent = isHidden
+        ? "Hide Password"
+        : "Show Password";
+    });
+  }
+</script>

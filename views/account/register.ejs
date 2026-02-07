@@ -1,28 +1,17 @@
 <main class="register-container">
   <h1><%= title %></h1>
+<% if (messages.notice) { %>
+  <div class="notice">
+    <%= messages.notice %>
+  </div>
+<% } %>
 
-  <!-- Messages flash -->
-  <% if (messages) { %>
-    <% if (messages('success') && messages('success').length > 0) { %>
-      <div class="flash-success">
-        <%= messages('success')[0] %>
-      </div>
-    <% } %>
-    <% if (messages('error') && messages('error').length > 0) { %>
-      <div class="flash-error">
-        <%= messages('error')[0] %>
-      </div>
-    <% } %>
-  <% } %>
-  
-  <!-- Erreurs Express Validator -->
-  <% if (errors) { %>
-    <ul class="notice">
-      <% errors.array().forEach(error => { %>
-        <li><%= error.msg %></li>
-      <% }) %>
-    </ul>
-  <% } %>
+<% if (messages.error) { %>
+  <div class="error">
+    <%= messages.error %>
+  </div>
+<% } %>
+
 
   <!-- Formulaire d'inscription -->
   <form class="register-form" action="/account/register" method="post">

@@ -2,7 +2,18 @@
   <h1><%= title %></h1>
 
   <!-- Flash messages -->
-  <%- messages() %>
+  <% if (messages.notice) { %>
+  <div class="notice">
+    <%= messages.notice %>
+  </div>
+<% } %>
+
+<% if (messages.error) { %>
+  <div class="error">
+    <%= messages.error %>
+  </div>
+<% } %>
+
 
   <form action="/account/login" method="post">
     <label for="account_email">Email address</label>

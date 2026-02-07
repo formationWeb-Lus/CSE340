@@ -1,7 +1,15 @@
-<% if (message) { %>
-  <div class="notice"><%= message %></div>
+<!-- Flash messages -->
+  <% if (messages.notice) { %>
+  <div class="notice">
+    <%= messages.notice %>
+  </div>
 <% } %>
 
+<% if (messages.error) { %>
+  <div class="error">
+    <%= messages.error %>
+  </div>
+<% } %>
 <h1>Inventory Management</h1>
 
 <ul class="inventory-management">

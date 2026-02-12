@@ -1,0 +1,6 @@
+<h1>Thank You!</h1>
+<p>Your payment for <strong><%= vehicle.inv_make %> <%= vehicle.inv_model %></strong> has been successfully processed.</p>
+<p>Amount Paid: $<%= new Intl.NumberFormat("en-US").format(vehicle.inv_price) %></p>
+<p>We appreciate your purchase! 🚗💨</p>
+
+<a href="/inv/">Back to Inventory</a>

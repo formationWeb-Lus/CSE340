@@ -1,0 +1,37 @@
+<h1>Vehicle Payment</h1>
+
+<% if (errors && errors.length > 0) { %>
+  <ul class="error-list">
+    <% errors.forEach(error => { %>
+      <li style="color: red; font-weight: bold;"><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<form action="/payment/" method="post">
+
+  <input type="hidden" name="inv_id" value="<%= inv_id %>">
+
+  <label>Vehicle</label>
+  <input type="text"
+value="<%= vehicle ? vehicle.inv_make + ' ' + vehicle.inv_model : '' %>"
+readonly>
+
+  <label>Price</label>
+  <input type="number"name="amount"value="<%= amount || '' %>"readonly>
+  
+  <label>Name on Card</label>
+  <input type="text" name="card_name" placeholder="John Doe" required value="<%= card_name %>">
+
+  <label>Card Number</label>
+  <input type="text" name="card_number" placeholder="1234567812345678" required value="<%= card_number %>">
+
+  <label>Expiry Date (MM/YY)</label>
+  <input type="text" name="expiry_date" placeholder="12/25" required value="<%= expiry_date %>">
+
+  <label>CVV</label>
+  <input type="text" name="cvv" placeholder="123" required value="<%= cvv %>">
+
+  <button type="submit">Confirm Payment</button>
+</form>
+

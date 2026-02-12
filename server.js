@@ -16,6 +16,7 @@ const inventoryRoute = require("./routes/invRoute")
 const accountRoute = require("./routes/accountRoute")
 const staticRoutes = require("./routes/static")
 const utilities = require("./utilities/")
+const paymentRoute = require("./routes/paymentRoute")
 
 const app = express()
 
@@ -76,6 +77,7 @@ app.use(staticRoutes)
 app.get("/", utilities.handleErrors(baseController.buildHome))
 app.use("/inv", inventoryRoute)
 app.use("/account", accountRoute)
+app.use("/payment", paymentRoute)
 
 // 404
 app.use(async (req, res, next) => {

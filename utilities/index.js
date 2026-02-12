@@ -65,6 +65,8 @@ Util.buildClassificationGrid = async function (data) {
 
 /* **************************************
  * Build vehicle detail HTML
+/* **************************************
+ * Build vehicle detail HTML
  ************************************** */
 Util.buildVehicleDetail = function (vehicle) {
   return `
@@ -78,9 +80,20 @@ Util.buildVehicleDetail = function (vehicle) {
         <p><strong>Year:</strong> ${vehicle.inv_year}</p>
         <p><strong>Mileage:</strong> ${new Intl.NumberFormat("en-US").format(vehicle.inv_miles)} miles</p>
       </div>
+
+      <!-- BOUTON PAY NOW -->
+      <div class="payment-btn" style="margin-top: 20px;">
+        <form action="/payment/${vehicle.inv_id}" method="get">
+          <button type="submit" class="btn-pay">
+            Pay Now
+          </button>
+        </form>
+      </div>
     </section>
   `
 }
+
+
 
 /* **************************************
  * Build classification dropdown list
